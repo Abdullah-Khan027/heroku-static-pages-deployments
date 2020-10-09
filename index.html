@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <style>
+        h1{color: black;}
+.tab{color:black;}
+        .container{overflow : hidden}
+        .tab{float: left;}
+        .tab-2{margin-left: 350px}
+        .tab-2 input{display:block;margin-bottom: 10px}
+    
+    </style>
+
+
+</head>
+
+<body>
+<h1>List Of Person</h1>
+    <div class="container">
+        <div class="tab tab-1">
+            <table id="table" border="1">
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Gender</th>
+                    <th>Age</th>
+                    <th>City</th>
+                </tr>
+                
+            </table>
+            
+    <div class="tab tab-2">
+        First Name :<input type="text" name="fname" id="fname"> 
+        Last Name :<input type="text" name="lname" id="lname">
+        Gender: <input type="text" name="gender" id="gen">      
+        Age :<input type="number" name="age" id="age">
+        City :<input type="text" name="city" id="c">
+        
+        <button onclick="addTableRow();">Add</button>
+        <button onclick="edittablerow();">Update</button>
+        <button onclick="removeSelectedRow();">Reset</button>
+        
+
+    </div>   
+    
+    
+    <script>
+
+var rIndex,
+table =document.getElementById("table");
+
+        function addTableRow()
+        {
+            var newRow = table.insertRow(table.length),
+            newRow = table.insertRow(table.length),
+            cell1 = newRow.insertCell(0),
+            cell2 = newRow.insertCell(1),
+            cell3 = newRow.insertCell(2),
+            cell4 = newRow.insertCell(3),
+            cell5 = newRow.insertCell(4),
+            
+            
+            fname = document.getElementById("fname").value,
+            lname = document.getElementById("lname").value,
+            gender = document.getElementById("gen").value,
+            age = document.getElementById("age").value;
+            city = document.getElementById("c").value;
+
+            cell1.innerHTML = fname;
+            cell2.innerHTML = lname;
+            cell3.innerHTML = gender
+            cell4.innerHTML = age;
+            cell5.innerHTML = city;
+
+            selectedRowToInput();
+        }
+
+        function selectedRowToInput()
+        {
+            
+            for(var i=1; i<table.rows.length; i++)
+            {
+            table.rows[i].onclick=function()
+            {
+            rIndex = this.rowIndex;
+            document.getElementById("fname").value = this.cells[0].innerHTML;
+            document.getElementById("lname").value = this.cells[1].innerHTML;
+            document.getElementById("gen").value = this.cells[2].innerHTML;
+            document.getElementById("age").value = this.cells[3].innerHTML;
+            document.getElementById("c").value = this.cells[4].innerHTML;
+            
+        };
+    }
+        }
+        selectedRowToInput();
+
+        function edittablerow()
+        {
+            var fname = document.getElementById("fname").value,
+            lname = document.getElementById("lname").value,
+            gender = document.getElementById("gen").value,
+            age = document.getElementById("age").value;
+            city = document.getElementById("c").value;
+            
+            table.rows[rIndex].cells[0].innerHTML = fname;
+            table.rows[rIndex].cells[1].innerHTML = lname;
+            table.rows[rIndex].cells[2].innerHTML = gender;
+            table.rows[rIndex].cells[3].innerHTML = age;
+            table.rows[rIndex].cells[4].innerHTML = city;
+        }
+
+
+        function removeSelectedRow()
+        {
+            document.getElementById("fname").value = null;
+            document.getElementById("lname").value = null;
+            document.getElementById("gen").value = null;
+            document.getElementById("age").value = null;
+            document.getElementById("c").value = null;
+            
+        }
+
+        
+    
+
+
+    </script>
+
+
+</body>
+
+</html>
